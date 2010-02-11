@@ -1,0 +1,24 @@
+<!ENTITY prefwindow.title "Bug ID Helper preferences">
+<!ENTITY pane1.title "Bug ID Helper preferences">
+<!ENTITY linkifypref.label "Linkify Bug Ids/Urls">
+<!ENTITY strikepref.label "Strikethrough Bugs With Resolution:">
+<!ENTITY loginpref.label "Login (opt):">
+<!ENTITY loginpref.tooltip "Login for tooltip info on password-protected bugs">
+<!ENTITY passpref.label "Password:">
+<!ENTITY divertpref.label "Load Links in New Tab">
+<!ENTITY tooltippref.label "Add Tooltips to Bugzilla Links">
+<!ENTITY toolidpref.label "Show Id">
+<!ENTITY toolstatpref.label "Show Status/Resolution">
+<!ENTITY tooldescpref.label "Show Short Description">
+<!ENTITY tooldatepref.label "Show Date Reported">
+<!ENTITY toolassignpref.label "Show Assignee">
+<!ENTITY toolcomppref.label "Show Product/Component">
+<!ENTITY toolcommpref.label "Show Commenter">
+<!ENTITY toolerrorpref.label "Show Error">
+<!ENTITY toolerrorpref.tooltip "Display error message in tooltip if invalid bug id">
+<!ENTITY toolcommpref.tooltip "Display commenter in tooltip over urls with named comment anchor">
+<!ENTITY filterpref.label "Only Add Links/Tooltips to These Domains:">
+<!ENTITY urlpref.label "Bugzilla URL (e.g. bugzilla.mozilla.org):">
+<!ENTITY stringpref.accesskey "U">
+<!ENTITY intpref.accesskey "T">
+<!ENTITY checkboolpref.accesskey "L">
