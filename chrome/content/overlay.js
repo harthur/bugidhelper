@@ -66,13 +66,6 @@ var bugidHelper = {
   init : function () {
     this.strings = document.getElementById("bugid-strings");
 
-    this.prefService = Components.classes['@mozilla.org/preferences-service;1']
-                       .getService(Components.interfaces.nsIPrefBranch2);
-
-    this.userUrl = this.prefService.getCharPref("extensions.bugid.url");
-    this.baseUrl = this.toBaseUrl(this.userUrl);
-    this.prefService.addObserver("extensions.bugid.url", this, false);
-
     /* add content page load listener */
     var content = document.getElementById("appcontent");
     if(content)
@@ -84,27 +77,6 @@ var bugidHelper = {
       messagepane.addEventListener("load", function(e) { bugidHelper.contentLoad(e); }, true);
   },
 
-  observe : function(subject, topic, data) {
-    if (topic == "nsPref:changed") {
-      switch(data) {
-        case "extensions.bugid.url":
-          this.userUrl = this.prefService.getCharPref("extensions.bugid.url")
-          this.baseUrl = this.toBaseUrl(this.userUrl);
-          break;
-        default:
-          break;
-      }
-    }
-  },
-
-  /*--- context menu ---*/
-  openSelection : function () {
-    var bugurl = this.baseUrl + "id=" + this.selectedBug;
-    var loadInBackground = this.prefService.getBoolPref("browser.tabs.loadDivertedInBackground");
-    gBrowser.loadOneTab(bugurl, null, null, null, loadInBackground, false);
-  },
-
-  /*--- linkification ---*/
   contentLoad : function(event) {
     var doc = event.originalTarget;
     if(this.canBugify(doc)) {
@@ -229,4 +201,4 @@ var bugidHelper = {
   }
 }
 
-bugIdHelper.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2); // for addObserver
+bugidHelper.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2); // for addObserver

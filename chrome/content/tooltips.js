@@ -4,7 +4,7 @@ var bugidTooltip = {
     if(links.length > 0) {
       var login = bugidHelper.getLogin();
       if(login.username) {
-        var userUrl = bugidHelper.prefService.getCharPref("extensions.bugid.url");
+        var userUrl = bugidHelper.prefs.getCharPref("url");
         bugzillaRPC.setUrl(bugidHelper.toBugzillaDomain(userUrl));
         bugzillaRPC.login(login.username, login.password,
                           function(){ bugidTooltip.tooltipifyLinks(doc, links);},
@@ -47,8 +47,9 @@ var bugidTooltip = {
         var bug = xml.getElementsByTagName("bug");
         if(bug && bug[0] && bug[0].hasAttribute("error")) {
           var error = bug[0].getAttribute("error");
+          var userUrl = bugidHelper.prefs.getCharPref("url");
           element.title = bugidHelper.strings.getFormattedString("invalidId",
-		                                   [bugidHelper.userUrl, error]);
+		                                   [userUrl, error]);
           return;
         }
         var tooltip = [];
@@ -99,8 +100,9 @@ var bugidTooltip = {
         var bug = xml.getElementsByTagName("bug");
         if(bug && bug[0] && bug[0].hasAttribute("error")) {
           var error = bug[0].getAttribute("error");
+          var userUrl = bugidHelper.prefs.getCharPref("url");
           element.title = bugidHelper.strings.getFormattedString("invalidId", 
-                            [bugidHelper.userUrl, error]);
+                            [userUrl, error]);
           return;
         }
         /* set title attribute to comment text */

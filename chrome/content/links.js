@@ -1,5 +1,6 @@
 bugidLinks = {
   linkifyContent : function(doc, target) {
+    var baseUrl = bugidHelper.toBaseUrl(bugidHelper.prefs.getCharPref("url"));
     var textnodes = bugidHelper.xpathNodes(doc,
       "descendant::text()[contains(translate(., 'BUG', 'bug'),'bug')]", target);
 
@@ -15,7 +16,7 @@ bugidLinks = {
           var index = matches.index;
           var prelen = matches[1].length;
           var bugtext = matches[2];
-          var url = bugidHelper.baseUrl + "id=" + matches[3];
+          var url = baseUrl + "id=" + matches[3];
         }
         else if (urlmatches) {
           var index = urlmatches.index;
