@@ -12,8 +12,6 @@ pref("extensions.bugid.tooltip.showcomp", false);
 pref("extensions.bugid.tooltip.showerror", true);
 pref("extensions.bugid.tooltip.showassign", false);
 pref("extensions.bugid.tooltip.showcommenter", true);
-pref("extensions.bugid.filter", false);
-pref("extensions.bugid.whitelist", "mxr.mozilla.org, www.google.com");
 
 
 

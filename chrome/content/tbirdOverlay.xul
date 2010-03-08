@@ -39,6 +39,8 @@
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
   <script type="application/x-javascript" src="chrome://bugid/content/overlay.js"/>
+  <script type="application/x-javascript" src="chrome://bugid/content/links.js"/>
+  <script type="application/x-javascript" src="chrome://bugid/content/tooltips.js"/>
   <script type="application/x-javascript" src="chrome://bugid/content/bugzillaRPC.js"/>
   
   <stringbundleset id="stringbundleset">

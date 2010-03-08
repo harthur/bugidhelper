@@ -62,8 +62,6 @@
       <preference id="toolassignpref" name="extensions.bugid.tooltip.showassign" type="bool"/>
       <preference id="toolcommpref" name="extensions.bugid.tooltip.showcommenter" type="bool"/>
       <preference id="toolerrorpref" name="extensions.bugid.tooltip.showerror" type="bool"/>
-      <preference id="filterpref" name="extensions.bugid.filter" type="bool" />
-      <preference id="whitelistpref" name="extensions.bugid.whitelist" type="string" />
     </preferences>
 
     <vbox class="category-prime">
@@ -119,15 +117,5 @@
                   tooltiptext="&toolerrorpref.tooltip;" />
       </vbox>
     </vbox>
-
-    <vbox class="category">
-      <checkbox id="filtboolpref" preference="filterpref" label="&filterpref.label;" control="whitelisttext"
-                onsyncfrompreference="togglePrefs('filtersubpref', 'filtboolpref')" 
-                onsynctopreference="togglePrefs('filtersubpref', 'filtboolpref')" />
-      <vbox class="subpref">
-        <textbox id="whitelisttext" class="filtersubpref" preference="whitelistpref"/>
-      </vbox>
-    </vbox>
-
   </prefpane>
 </prefwindow>

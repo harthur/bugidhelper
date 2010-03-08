@@ -39,11 +39,13 @@
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
          onload="BugIdHelper.onload();">
 
-	<stringbundleset id="stringbundleset">
+  <stringbundleset id="stringbundleset">
     <stringbundle id="bugid-strings" src="chrome://bugid/locale/bugid.properties"/>
   </stringbundleset>
 
   <script type="application/x-javascript" src="chrome://bugid/content/overlay.js"/>
+  <script type="application/x-javascript" src="chrome://bugid/content/links.js"/>
+  <script type="application/x-javascript" src="chrome://bugid/content/tooltips.js"/>
   <script type="application/x-javascript" src="chrome://bugid/content/bugzillaRPC.js"/>
 
   <popup id="contentAreaContextMenu">
