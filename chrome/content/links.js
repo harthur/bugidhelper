@@ -1,4 +1,4 @@
-bugidLinkifier = {
+bugidLinks = {
   linkifyContent : function(doc, target) {
     var textnodes = bugidHelper.xpathNodes(doc,
       "descendant::text()[contains(translate(., 'BUG', 'bug'),'bug')]", target);

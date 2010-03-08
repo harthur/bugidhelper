@@ -13,11 +13,6 @@
 <!ENTITY tooldatepref.label "Show Date Reported">
 <!ENTITY toolassignpref.label "Show Assignee">
 <!ENTITY toolcomppref.label "Show Product/Component">
-<!ENTITY toolcommpref.label "Show Commenter">
-<!ENTITY toolerrorpref.label "Show Error">
-<!ENTITY toolerrorpref.tooltip "Display error message in tooltip if invalid bug id">
-<!ENTITY toolcommpref.tooltip "Display commenter in tooltip over urls with named comment anchor">
-<!ENTITY filterpref.label "Only Add Links/Tooltips to These Domains:">
 <!ENTITY urlpref.label "Bugzilla URL (e.g. bugzilla.mozilla.org):">
 <!ENTITY stringpref.accesskey "U">
 <!ENTITY intpref.accesskey "T">

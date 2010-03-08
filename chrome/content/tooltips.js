@@ -1,6 +1,4 @@
-var bugidTooltipifier = {
-
- /*--- tooltip ---*/
+var bugidTooltip = {
   tooltipifyContent : function(doc, target) {
     var links = bugidHelper.xpathNodes(doc, 'descendant::a[contains(@href, "show_bug.cgi")]', target);
     if(links.length > 0) {
@@ -9,8 +7,8 @@ var bugidTooltipifier = {
         var userUrl = bugidHelper.prefService.getCharPref("extensions.bugid.url");
         bugzillaRPC.setUrl(bugidHelper.toBugzillaDomain(userUrl));
         bugzillaRPC.login(login.username, login.password,
-                          function(){ bugidTooltipifier.tooltipifyLinks(doc, links);},
-                          function(){ bugidToolipifier.tooltipifyLinks(doc, links);});
+                          function(){ bugidTooltip.tooltipifyLinks(doc, links);},
+                          function(){ bugidTooltip.tooltipifyLinks(doc, links);});
       }
       else
         this.tooltipifyLinks(doc, links);
@@ -30,9 +28,9 @@ var bugidTooltipifier = {
         var url = "http://" + base + "ctype=xml&excludefield=attachment&id=" + matches[3];
         var commentId = matches[4];
         if(commentId)
-          bugidTooltipifier.setComment(link, url, commentId);
+          bugidTooltip.setComment(link, url, commentId);
         else
-          bugidTooltipifier.setTooltip(link, url);
+          bugidTooltip.setTooltip(link, url);
       }
     }
   },
@@ -42,18 +40,15 @@ var bugidTooltipifier = {
       function(wasSuccess, xml) {
         if(!bugidHelper) // this happens sometimes
           return;
-        var showerror = bugidHelper.getBoolPref("tooltip.showerror");
         if(!wasSuccess) {
-          if(showerror)
-            element.title = bugidHelper.strings.getFormattedString("invalidPage", [url]);
+          element.title = bugidHelper.strings.getFormattedString("invalidPage", [url]);
           return;
         }
         var bug = xml.getElementsByTagName("bug");
         if(bug && bug[0] && bug[0].hasAttribute("error")) {
           var error = bug[0].getAttribute("error");
-          if(showerror)
-            element.title = bugidHelper.strings.getFormattedString("invalidId",
-		                                                 [bugidHelper.userUrl, error]);
+          element.title = bugidHelper.strings.getFormattedString("invalidId",
+		                                   [bugidHelper.userUrl, error]);
           return;
         }
         var tooltip = [];
@@ -81,8 +76,9 @@ var bugidTooltipifier = {
           tooltip.push(bugidHelper.bugAttribute(xml, "short_desc"));
 
         if(bugidHelper.getBoolPref("link.strikethrough")) {
-          var reso = bugidHelper.bugAttribute(xml, "resolution");
-          if(bugidHelper.strikeResos.indexOf(reso) != -1)
+          var resolution = bugidHelper.bugAttribute(xml, "resolution");
+          var resos = bugidHelper.prefs.getCharPref("link.strike.resos").split(/[\.,\s]+/);
+          if(resos.indexOf(resolution) != -1)
             element.style.textDecoration = "underline line-through";
         }
 
@@ -96,17 +92,14 @@ var bugidTooltipifier = {
       function(wasSuccess, xml) {
         if(!bugidHelper) // this happens sometimes
           return;
-        var showerror = bugidHelper.getBoolPref("tooltip.showerror");
         if(!wasSuccess) {
-          if(showerror)
-            element.title = bugidHelper.strings.getFormattedString("invalidPage", [url]);
+          element.title = bugidHelper.strings.getFormattedString("invalidPage", [url]);
           return;
         }
         var bug = xml.getElementsByTagName("bug");
         if(bug && bug[0] && bug[0].hasAttribute("error")) {
           var error = bug[0].getAttribute("error");
-          if(showerror)
-            element.title = bugidHelper.strings.getFormattedString("invalidId", 
+          element.title = bugidHelper.strings.getFormattedString("invalidId", 
                             [bugidHelper.userUrl, error]);
           return;
         }
@@ -115,8 +108,7 @@ var bugidTooltipifier = {
         if(comment) {
           var text = bugidHelper.bugAttribute(comment, "thetext");
           var tooltip = "";
-          if(bugidHelper.getBoolPref("tooltip.showcommenter"))
-            tooltip += bugidHelper.bugAttribute(comment, "who") + " -- ";
+          tooltip += bugidHelper.bugAttribute(comment, "who") + " -- ";
           element.title = tooltip + text.substring(0, Math.min(text.length, 180)) + " ..."; 
         }
      });

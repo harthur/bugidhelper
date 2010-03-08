@@ -37,6 +37,13 @@ window.addEventListener("load", function(){ bugidHelper.init(); }, false);
 
 var bugidHelper = {
 
+  prefs :  Components.classes['@mozilla.org/preferences-service;1']
+           .getService(Components.interfaces.nsIPrefService)
+           .getBranch("extensions.bugid."),
+
+  prefService : Components.classes['@mozilla.org/preferences-service;1']
+             .getService(Components.interfaces.nsIPrefBranch2),
+
   /* 1 - bug id */
   contextExp : /^(?:.*bug|ug|g)?\s*#?(\d{2,7})(?:$|\b)/i,
 
@@ -66,10 +73,6 @@ var bugidHelper = {
     this.baseUrl = this.toBaseUrl(this.userUrl);
     this.prefService.addObserver("extensions.bugid.url", this, false);
 
-    var resos = this.prefService.getCharPref("extensions.bugid.link.strike.resos");
-    this.strikeResos = resos.split(/[\.,\s]+/);
-    this.prefService.addObserver("extensions.bugid.link.strike.resos", this, false);
-
     /* add content page load listener */
     var content = document.getElementById("appcontent");
     if(content)
@@ -87,14 +90,6 @@ var bugidHelper = {
         case "extensions.bugid.url":
           this.userUrl = this.prefService.getCharPref("extensions.bugid.url")
           this.baseUrl = this.toBaseUrl(this.userUrl);
-          break;
-        case "extensions.bugid.whitelist":
-          var urls = this.prefService.getCharPref("extensions.bugid.whitelist");
-          this.domainExps = this.toDomains(urls);
-          break;
-        case "extensions.bugid.link.strike.resos":
-          var resos = this.prefService.getCharPref("extensions.bugid.link.strike.resos");
-          this.strikeResos = resos.split(/[\.,\s]+/);
           break;
         default:
           break;
@@ -125,9 +120,9 @@ var bugidHelper = {
 
   bugifyContent : function(doc, target) {
     if(this.getBoolPref("linkify"))
-      bugidLinkifier.linkifyContent(doc, target);
+      bugidLinks.linkifyContent(doc, target);
     if(this.getBoolPref("tooltipify"))
-      bugidTooltipifier.tooltipifyContent(doc, target);
+      bugidTooltip.tooltipifyContent(doc, target);
   }, 
 
   toBugzillaDomain : function (fragment) {
@@ -160,7 +155,7 @@ var bugidHelper = {
   },
 
   getBoolPref : function(pref) {
-    return this.prefService.getBoolPref("extensions.bugid." + pref);
+    return this.prefs.getBoolPref(pref);
   },
 
   getLogin : function() {
@@ -233,3 +228,5 @@ var bugidHelper = {
     return doc.evaluate(expression, target, null, XPathResult.STRING_TYPE, null).stringValue;
   }
 }
+
+bugIdHelper.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2); // for addObserver

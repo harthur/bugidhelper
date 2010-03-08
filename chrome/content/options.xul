@@ -60,8 +60,6 @@
       <preference id="tooldatepref" name="extensions.bugid.tooltip.showdate" type="bool" />
       <preference id="toolcomppref" name="extensions.bugid.tooltip.showcomp" type="bool" />
       <preference id="toolassignpref" name="extensions.bugid.tooltip.showassign" type="bool"/>
-      <preference id="toolcommpref" name="extensions.bugid.tooltip.showcommenter" type="bool"/>
-      <preference id="toolerrorpref" name="extensions.bugid.tooltip.showerror" type="bool"/>
     </preferences>
 
     <vbox class="category-prime">
@@ -111,10 +109,6 @@
         <checkbox id="assignbox" class="toolsubpref" preference="toolassignpref" label="&toolassignpref.label;" />
         <checkbox id="compbox" class="toolsubpref" preference="toolcomppref" label="&toolcomppref.label;" />
         <checkbox id="descbox" class="toolsubpref" preference="tooldescpref" label="&tooldescpref.label;" />
-        <checkbox id="commbox" class="toolsubpref" preference="toolcommpref" label="&toolcommpref.label;" 
-                  tooltiptext="&toolcommpref.tooltip;"/>
-        <checkbox id="errorbox" class="toolsubpref" preference="toolerrorpref" label="&toolerrorpref.label;"
-                  tooltiptext="&toolerrorpref.tooltip;" />
       </vbox>
     </vbox>
   </prefpane>

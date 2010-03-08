@@ -9,9 +9,7 @@ pref("extensions.bugid.tooltip.showstat", false);
 pref("extensions.bugid.tooltip.showdesc", true);
 pref("extensions.bugid.tooltip.showdate", false);
 pref("extensions.bugid.tooltip.showcomp", false);
-pref("extensions.bugid.tooltip.showerror", true);
 pref("extensions.bugid.tooltip.showassign", false);
-pref("extensions.bugid.tooltip.showcommenter", true);
 
 
 
